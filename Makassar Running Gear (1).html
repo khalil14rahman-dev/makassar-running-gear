@@ -1,0 +1,730 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, viewport-fit=cover"
+    />
+    <title>Makassar Running Gear</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@75..125,400..800&display=swap"
+    />
+    <style>
+      :root {
+        --bg: #fff;
+        --fg: #000;
+        --mu: #6b6b6b;
+        --ln: #e2e2e2;
+        --cd: #f1f1f1;
+        box-sizing: border-box;
+        padding-top: env(safe-area-inset-top, 0px);
+        padding-bottom: env(safe-area-inset-bottom, 0px);
+      }
+      :root {
+        color-scheme: light;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      html {
+        scroll-padding-top: env(safe-area-inset-top, 0px);
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--fg);
+        font-family: Archivo, "Helvetica Neue", Arial, sans-serif;
+        line-height: 1.5;
+      }
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+      button,
+      input,
+      select {
+        font: inherit;
+        color: inherit;
+      }
+      header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 20px 5vw;
+        border-bottom: 1px solid var(--ln);
+        flex-wrap: wrap;
+        gap: 12px;
+      }
+      .logo {
+        font-weight: 800;
+        font-stretch: 125%;
+        letter-spacing: -0.02em;
+        font-size: 20px;
+      }
+      nav {
+        display: flex;
+        gap: 6px;
+        flex-wrap: wrap;
+      }
+      nav a {
+        padding: 6px 14px;
+        border-radius: 6px;
+        font-size: 14px;
+      }
+      nav a.on,
+      nav a:hover {
+        background: #2a2a2a;
+      }
+      header {
+        background: #000;
+        color: #fff;
+        border-bottom-color: #000;
+      }
+      header a:focus-visible {
+        outline: 2px solid #fff;
+        outline-offset: 2px;
+      }
+      main {
+        min-height: 70vh;
+        padding: 32px 5vw;
+      }
+      h1 {
+        font-size: clamp(34px, 6vw, 72px);
+        line-height: 1;
+        letter-spacing: -0.03em;
+        font-weight: 800;
+        font-stretch: 112%;
+        margin: 0 0 16px;
+      }
+      h2 {
+        font-size: 24px;
+        margin: 0 0 12px;
+        letter-spacing: -0.01em;
+      }
+      .mu {
+        color: var(--mu);
+      }
+      .btn {
+        display: inline-block;
+        background: var(--fg);
+        color: var(--bg);
+        border: 1px solid var(--fg);
+        padding: 12px 22px;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: 600;
+      }
+      .btn.o {
+        background: transparent;
+        color: var(--fg);
+      }
+      .btn:focus-visible,
+      input:focus-visible,
+      select:focus-visible,
+      .sz:focus-visible {
+        outline: 2px solid var(--fg);
+        outline-offset: 2px;
+      }
+      .shop {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 32px;
+      }
+      .filt {
+        border: 1px solid var(--fg);
+        align-self: start;
+      }
+      .filt > div {
+        padding: 14px;
+        border-bottom: 1px solid var(--ln);
+      }
+      .filt > div:last-child {
+        border: 0;
+      }
+      .filt h3 {
+        margin: 0 0 6px;
+        font-size: 20px;
+      }
+      .filt label {
+        display: block;
+        font-size: 14px;
+        padding: 2px 0;
+        cursor: pointer;
+      }
+      .filt input[type="search"] {
+        width: 100%;
+        border: 1px solid var(--fg);
+        border-radius: 20px;
+        padding: 5px 12px;
+        background: transparent;
+      }
+      .bar {
+        display: flex;
+        justify-content: flex-end;
+        margin-bottom: 16px;
+      }
+      .bar select {
+        border: 1px solid var(--ln);
+        background: var(--bg);
+        padding: 8px 12px;
+        border-radius: 6px;
+      }
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 28px;
+      }
+      .img {
+        background: var(--cd);
+        aspect-ratio: 1;
+        display: grid;
+        place-items: center;
+      }
+      .img svg {
+        width: 75%;
+      }
+      .card .n {
+        font-weight: 600;
+        margin-top: 8px;
+      }
+      .card .p {
+        font-weight: 800;
+      }
+      .card small {
+        color: var(--mu);
+        display: block;
+        font-size: 12px;
+      }
+      .det {
+        display: grid;
+        grid-template-columns: 1fr 340px;
+        gap: 32px;
+      }
+      .gal {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 16px;
+      }
+      .sz {
+        border: 1px solid var(--fg);
+        background: transparent;
+        padding: 5px 10px;
+        margin: 0 6px 6px 0;
+        cursor: pointer;
+        border-radius: 3px;
+      }
+      .sz.on {
+        background: var(--fg);
+        color: var(--bg);
+      }
+      .desc {
+        background: var(--cd);
+        padding: 24px;
+        margin-top: 24px;
+        border-radius: 6px;
+      }
+      .two {
+        display: grid;
+        grid-template-columns: 1fr 360px;
+        gap: 32px;
+      }
+      .box {
+        border: 1px solid var(--ln);
+        padding: 20px;
+        border-radius: 6px;
+      }
+      .row {
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        padding: 8px 0;
+        border-bottom: 1px solid var(--ln);
+        font-size: 15px;
+      }
+      .f {
+        display: grid;
+        gap: 12px;
+      }
+      .f input,
+      .f select {
+        width: 100%;
+        border: 1px solid var(--ln);
+        background: transparent;
+        padding: 11px;
+        border-radius: 6px;
+      }
+      .opt {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        border: 1px solid var(--ln);
+        padding: 12px;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .dash {
+        display: grid;
+        grid-template-columns: 200px 1fr;
+        gap: 28px;
+      }
+      .side {
+        background: #000;
+        color: #fff;
+        padding: 20px;
+        border-radius: 6px;
+        align-self: start;
+      }
+      .side a {
+        display: block;
+        padding: 8px 0;
+        color: #bbb;
+      }
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+        margin-bottom: 24px;
+      }
+      .stats b {
+        font-size: 26px;
+        display: block;
+      }
+      .chart {
+        display: flex;
+        align-items: flex-end;
+        gap: 12px;
+        height: 160px;
+      }
+      .chart i {
+        flex: 1;
+        background: var(--fg);
+        display: block;
+        border-radius: 3px 3px 0 0;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 14px;
+      }
+      td,
+      th {
+        text-align: left;
+        padding: 10px 6px;
+        border-bottom: 1px solid var(--ln);
+      }
+      .tg {
+        border: 1px solid var(--fg);
+        border-radius: 20px;
+        padding: 1px 10px;
+        font-size: 12px;
+      }
+      footer {
+        background: #000;
+        color: #fff;
+        padding: 28px 5vw;
+      }
+      footer .logo {
+        background: #fff;
+        color: #000;
+        display: inline-block;
+        padding: 4px 14px;
+        font-size: 14px;
+        margin-bottom: 10px;
+      }
+      .dd {
+        position: relative;
+      }
+      .menu {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #fff;
+        color: #000;
+        box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18);
+        border-radius: 6px;
+        padding: 8px;
+        min-width: 200px;
+        z-index: 20;
+      }
+      .dd:hover .menu,
+      .dd:focus-within .menu {
+        display: block;
+      }
+      .menu a {
+        display: block;
+        color: #6b6b6b;
+        padding: 8px 14px;
+      }
+      .menu a:hover {
+        background: #f1f1f1;
+        color: #000;
+      }
+      .hero {
+        display: grid;
+        grid-template-columns: 1.2fr 1fr;
+        gap: 32px;
+        align-items: center;
+        padding: 24px 0 48px;
+      }
+      @media (max-width: 800px) {
+        .shop,
+        .det,
+        .two,
+        .dash,
+        .hero {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <a href="#home" class="logo">MAKASSAR RUNNING GEAR</a>
+      <nav id="nav"></nav>
+    </header>
+    <main id="app"></main>
+    <footer>
+      <div class="logo">Makassar Running Gear</div>
+      <div>&#9679; Jl. Setapak Pengayoman No.4 Blk F21</div>
+    </footer>
+    <script>
+      const SH =
+        '<path d="M8 50c0-9 6-11 14-13l10-9 8 6 20 4c12 3 22 6 30 12v7H8z" fill="#8a8a8a"/><path d="M8 58h84" stroke="#333" stroke-width="6" stroke-linecap="round"/>';
+      const TS =
+        '<path d="M32 8L8 20l8 16 9-4v40h50V32l9 4 8-16L68 8c-4 6-9 8-18 8s-14-2-18-8z" fill="#b5b5b5"/>';
+      const P = [
+        {
+          pop: 90,
+          id: 1,
+          n: "On Cloudtilt Moon",
+          d: "Sepatu lari",
+          b: "On Cloud",
+          g: "u",
+          p: 3700000,
+          t: "s",
+          z: [40, 41, 42, 43, 44, 45],
+          x: "Sepatu lari dengan bantalan CloudTec untuk pendaratan lembut di jarak jauh.",
+        },
+        {
+          pop: 60,
+          id: 2,
+          n: "Adidas Adizero Evo SL ATR",
+          d: "Sepatu lari",
+          b: "Adidas",
+          g: "u",
+          p: 2600000,
+          t: "s",
+          z: [40, 41, 42, 43, 44, 45],
+          x: "Ringan dan responsif untuk latihan cepat dan lomba trail ringan.",
+        },
+        {
+          pop: 75,
+          id: 3,
+          n: "On Cloudmonster Waterproof",
+          d: "Sepatu lari",
+          b: "On Cloud",
+          g: "u",
+          p: 3700000,
+          t: "s",
+          z: [40, 41, 42, 43, 44, 45],
+          x: "Bantalan tebal dengan lapisan tahan air untuk lari di cuaca hujan.",
+        },
+        {
+          pop: 120,
+          id: 4,
+          n: "Nike Pro",
+          d: "Tight Short Sleeve Fitness Top",
+          b: "Nike",
+          g: "m",
+          p: 369000,
+          t: "k",
+          z: ["S", "M", "L", "XL"],
+          x: "Kaus ketat yang menyerap keringat dan tetap nyaman saat bergerak.",
+        },
+        {
+          pop: 40,
+          id: 5,
+          n: "Alo Vapor",
+          d: "Crewneck Long Sleeve",
+          b: "Alo",
+          g: "m",
+          p: 1559000,
+          t: "k",
+          z: ["S", "M", "L", "XL"],
+          x: "Lengan panjang bahan ringan, cocok untuk lari pagi yang sejuk.",
+        },
+        {
+          pop: 85,
+          id: 6,
+          n: "Nike Stride",
+          d: "Short Sleeve Running Top",
+          b: "Nike",
+          g: "f",
+          p: 569000,
+          t: "k",
+          z: ["S", "M", "L", "XL"],
+          x: "Kaus lari dengan sirkulasi udara baik untuk jarak jauh.",
+        },
+      ];
+      const WA = "6281234567890";
+      const rp = (n) => "Rp " + n.toLocaleString("id-ID");
+      const art = (p) =>
+        `<div class="img"><svg viewBox="0 0 100 70" role="img" aria-label="${p.n}">${p.t == "s" ? SH : TS}</svg></div>`;
+      let cart = [],
+        cat = "s",
+        BR = {
+          sepatu: [
+            ["adidas", "Adidas"],
+            ["asics", "Asics"],
+            ["newbalance", "New Balance"],
+            ["nike", "Nike"],
+            ["on", "On Cloud"],
+            ["puma", "Puma"],
+            ["salomon", "Salomon"],
+            ["saucony", "Saucony"],
+          ],
+          pakaian: [
+            ["adidas", "Adidas"],
+            ["alo", "Alo"],
+            ["nike", "Nike"],
+            ["on", "On Cloud"],
+            ["puma", "Puma"],
+          ],
+        },
+        F = { q: "", g: "", z: "", b: "" },
+        sort = "asc",
+        pick = "",
+        paid = null,
+        pay = "Transfer bank";
+      function nav(h) {
+        const r = h.split("-")[0],
+          dc =
+            r == "detail"
+              ? (P.find((x) => x.id == h.split("-")[1]) || P[0]).t
+              : "";
+        const on = (k) =>
+          r == k ||
+          (k == "sepatu" && (r == "produk" || dc == "s")) ||
+          (k == "pakaian" && dc == "k") ||
+          (k == "keranjang" && r == "checkout")
+            ? "on" 
+            : "";
+        const dd = (k, l) =>
+          `<div class="dd"><a href="#${k}" class="${on(k)}">${l} &#9662;</a><div class="menu">${BR[k].map((b) => `<a href="#${k}-${b[0]}">${b[1]}</a>`).join("")}<a href="#${k}">Semua</a></div></div>`;
+        document.getElementById("nav").innerHTML =
+          `<a href="#home" class="${on("home")}">Home</a>` +
+          dd("sepatu", "Footwear") +
+          dd("pakaian", "Apparel") +
+          `<a href="#tentang" class="${on("tentang")}">Tentang</a><a href="#keranjang" class="${on("keranjang")}">Keranjang (${cart.reduce((a, c) => a + c.q, 0)})</a><a href="#dashboard" class="${on("dashboard")}">Dashboard</a>`;
+      }
+      function card(p) {
+        return `<a class="card" href="#detail-${p.id}">${art(p)}<div class="n">${p.n}</div><small>${p.d}</small><div class="p">${rp(p.p)}</div></a>`;
+      }
+      function home() {
+        return `<div class="hero"><div><h1>Lari lebih jauh, tampil sederhana.</h1><p class="mu">Sepatu dan pakaian lari pilihan dari On, Adidas, Nike, dan Alo.</p><a class="btn" href="#sepatu">Footwear</a> <a class="btn" href="#pakaian">Apparel</a> <a class="btn o" href="#tentang">Tentang kami</a></div>${art(P[0])}</div><h2>Terbaru</h2><div class="grid">${P.slice(0, 3).map(card).join("")}</div>`;
+      }
+      function produk() {
+        const BL = BR[cat == "s" ? "sepatu" : "pakaian"],
+          SZ =
+            cat == "s"
+              ? ["40", "41", "42", "43", "44", "45"]
+              : ["S", "M", "L", "XL"];
+        let l = P.filter(
+          (p) =>
+            p.t == cat &&
+            (!F.q || p.n.toLowerCase().includes(F.q)) &&
+            (!F.g || p.g == F.g || p.g == "u") &&
+            (!F.z || p.z.map(String).includes(F.z)) &&
+            (!F.b || p.b == F.b),
+        ).sort((a, b) =>
+          sort == "asc"
+            ? a.p - b.p
+            : sort == "desc"
+              ? b.p - a.p
+              : sort == "new"
+                ? b.id - a.id
+                : b.pop - a.pop,
+        );
+        const rd = (k, v, t) =>
+          `<label><input type="radio" name="${k}" ${F[k] == v ? "checked" : ""} onclick="F.${k}='${v}';draw()"> ${t || v}</label>`;
+        return `<div class="bar"><h2 style="margin:0 auto 0 0">${cat == "s" ? "Footwear" : "Apparel"}${F.b ? " / " + F.b : ""}</h2><select aria-label="Urutkan" onchange="sort=this.value;draw()"><option value="asc" ${sort == "asc" ? "selected" : ""}>Sort by price : low to high</option><option value="desc" ${sort == "desc" ? "selected" : ""}>Sort by price : high to low</option><option value="new" ${sort == "new" ? "selected" : ""}>Sort by latest</option><option value="pop" ${sort == "pop" ? "selected" : ""}>Sort by popularity</option></select></div>
+<div class="shop"><aside class="filt"><div><input type="search" placeholder="Cari produk" value="${F.q}" oninput="F.q=this.value.toLowerCase();draw(1)"></div>
+<div><h3>Gender</h3>${rd("g", "m", "Pria")}${rd("g", "f", "Wanita")}</div>
+<div><h3>Ukuran</h3>${SZ.map((z) => rd("z", z)).join("")}</div>
+<div><h3>Brand</h3>${BL.map((b) => rd("b", b[1])).join("")}</div>
+<div><button class="btn o" onclick="F={q:'',g:'',z:'',b:''};draw()">Reset filter</button></div></aside>
+<div>${l.length ? `<div class="grid">${l.map(card).join("")}</div>` : '<p class="mu">Tidak ada produk yang cocok. Ubah atau reset filter.</p>'}</div></div>`;
+      }
+      function detail(id) {
+        const p = P.find((x) => x.id == id) || P[0];
+        return `<div class="det"><div><div class="gal">${[0, 1, 2, 3].map(() => art(p)).join("")}</div><div class="desc"><b>Deskripsi</b><p>${p.x}</p></div></div>
+<div><h1 style="font-size:32px">${p.n}</h1><div class="mu">${p.d}</div><div style="font-weight:800;font-size:22px;margin:8px 0 16px">${rp(p.p)}</div><hr style="border:0;border-top:1px solid var(--ln)"><h2 style="font-size:18px;margin-top:16px">Ukuran</h2>
+${p.z.map((z) => `<button class="sz ${pick == z ? "on" : ""}" onclick="pick='${z}';draw()">${z}</button>`).join("")}<p><button class="btn" style="width:100%" onclick="add(${p.id})">Tambah ke keranjang</button></p><p id="msg" class="mu" role="status"></p></div></div>`;
+      }
+      function add(id) {
+        if (!pick) {
+          document.getElementById("msg").textContent =
+            "Pilih ukuran terlebih dahulu.";
+          return;
+        }
+        const c = cart.find((x) => x.id == id && x.z == pick);
+        c ? c.q++ : cart.push({ id, z: pick, q: 1 });
+        location.hash = "keranjang";
+      }
+      const sub = () =>
+          cart.reduce((a, c) => a + P.find((p) => p.id == c.id).p * c.q, 0),
+        ONGKIR = 20000;
+      function keranjang() {
+        if (!cart.length)
+          return `<h2>Keranjang kosong</h2><p class="mu">Pilih produk untuk mulai berbelanja.</p><a class="btn" href="#produk">Lihat produk</a>`;
+        return `<h2>Keranjang</h2><div class="two"><div>${cart
+          .map((c, i) => {
+            const p = P.find((x) => x.id == c.id);
+            return `<div class="row" style="align-items:center"><span style="width:70px">${art(p)}</span><span style="flex:1"><b>${p.n}</b><br><span class="mu">Ukuran ${c.z}</span></span><span><button class="sz" onclick="q(${i},-1)">-</button> ${c.q} <button class="sz" onclick="q(${i},1)">+</button></span><b>${rp(p.p * c.q)}</b></div>`;
+          })
+          .join("")}</div>
+<div class="box"><div class="row"><span>Subtotal</span><span>${rp(sub())}</span></div><div class="row"><span>Ongkir</span><span>${rp(ONGKIR)}</span></div><div class="row"><b>Total</b><b>${rp(sub() + ONGKIR)}</b></div><p><a class="btn" style="width:100%;text-align:center" href="#checkout">Lanjut ke pembayaran</a></p></div></div>`;
+      }
+      function q(i, d) {
+        cart[i].q += d;
+        if (cart[i].q < 1) cart.splice(i, 1);
+        draw();
+      }
+      function checkout() {
+        if (paid)
+          return `<h2>Pesanan siap dikirim</h2><p>Terima kasih, ${paid.nama}. Nomor pesanan <b>${paid.no}</b>. Kirim pesan di WhatsApp untuk konfirmasi dan pembayaran.</p><p class="mu">Total ${rp(paid.tot)}, metode ${paid.m}.</p><p><a class="btn" href="${paid.u}" target="_blank" rel="noopener">Buka WhatsApp</a></p><a class="btn" href="#produk" onclick="paid=null">Belanja lagi</a>`;
+        if (!cart.length) return keranjang();
+        return `<h2>Pembayaran</h2><div class="two"><div class="f"><h3 style="margin:0">Data pengiriman</h3><input id="nama" placeholder="Nama lengkap" autocomplete="name"><input id="hp" placeholder="Nomor telepon" inputmode="tel"><input id="almt" placeholder="Alamat lengkap"><input id="kota" placeholder="Kota"><select id="kurir"><option>JNE Reguler</option><option>SiCepat</option><option>J&amp;T Express</option></select>
+<h3 style="margin:8px 0 0">Metode pembayaran</h3>${["Transfer bank", "QRIS", "Kartu kredit", "Bayar di tempat"].map((m) => `<label class="opt"><input type="radio" name="pay" ${pay == m ? "checked" : ""} onclick="pay='${m}'"> ${m}</label>`).join("")}<p id="err" class="mu" role="alert"></p></div>
+<div class="box"><h3 style="margin-top:0">Ringkasan</h3>${cart
+          .map((c) => {
+            const p = P.find((x) => x.id == c.id);
+            return `<div class="row"><span>${p.n} (${c.z}) x${c.q}</span><span>${rp(p.p * c.q)}</span></div>`;
+          })
+          .join(
+            "",
+          )}<div class="row"><span>Ongkir</span><span>${rp(ONGKIR)}</span></div><div class="row"><b>Total</b><b>${rp(sub() + ONGKIR)}</b></div><p><button class="btn" style="width:100%" onclick="bayar()">Pesan lewat WhatsApp</button></p></div></div>`;
+      }
+      function bayar() {
+        const v = (id) => document.getElementById(id).value.trim();
+        if (!v("nama") || !v("hp") || !v("almt") || !v("kota")) {
+          document.getElementById("err").textContent =
+            "Lengkapi nama, telepon, alamat, dan kota.";
+          return;
+        }
+        const L = cart
+          .map((c) => {
+            const p = P.find((x) => x.id == c.id);
+            return (
+              "- " +
+              p.n +
+              " (ukuran " +
+              c.z +
+              ") x" +
+              c.q +
+              " = " +
+              rp(p.p * c.q)
+            );
+          })
+          .join("\n");
+        const no = "SR-" + Date.now().toString().slice(-6),
+          tot = sub() + ONGKIR;
+        const t =
+          "Halo Makassar Running Gear, saya ingin memesan (" +
+          no +
+          "):\n" +
+          L +
+          "\nOngkir: " +
+          rp(ONGKIR) +
+          "\nTotal: " +
+          rp(tot) +
+          "\n\nNama: " +
+          v("nama") +
+          "\nTelepon: " +
+          v("hp") +
+          "\nAlamat: " +
+          v("almt") +
+          ", " +
+          v("kota") +
+          "\nKurir: " +
+          v("kurir") +
+          "\nPembayaran: " +
+          pay;
+        paid = {
+          nama: v("nama"),
+          no,
+          tot,
+          m: pay,
+          u: "https://wa.me/" + WA + "?text=" + encodeURIComponent(t),
+        };
+        cart = [];
+        draw();
+        window.open(paid.u, "_blank");
+      }
+      function tentang() {
+        return `<h1>Tentang produk kami</h1><p class="mu" style="max-width:60ch">Makassar Running Gear menjual sepatu dan pakaian lari yang kami coba sendiri di jalan. Kami hanya memilih produk yang nyaman dipakai, tahan lama, dan jelas gunanya.</p>
+<div class="grid" style="margin-top:32px"><div class="box"><h2>Sepatu lari</h2><p class="mu">Bantalan empuk untuk jarak jauh dan model ringan untuk latihan kecepatan. Tersedia ukuran 40 sampai 45.</p></div><div class="box"><h2>Pakaian lari</h2><p class="mu">Kaus pendek dan lengan panjang yang cepat kering dan tidak mengganggu gerak. Ukuran S sampai XL.</p></div><div class="box"><h2>Brand</h2><p class="mu">On Cloud, Adidas, Nike, dan Alo. Semua produk asli.</p></div></div>
+<h2 style="margin-top:32px">Cara memilih ukuran</h2><p class="mu" style="max-width:60ch">Ukur panjang kaki di sore hari, lalu pilih ukuran yang menyisakan ruang selebar satu jempol di ujung sepatu. Untuk pakaian, pilih ukuran yang pas di badan tanpa menekan.</p><p><a class="btn" href="#produk">Lihat semua produk</a></p>
+<h2 style="margin-top:32px">Kunjungi toko</h2><p class="mu">Jl. Setapak Pengayoman No.4 Blk F21</p>`;
+      }
+      function dashboard() {
+        const w = [40, 65, 50, 80, 95, 70, 110];
+        return `<div class="dash"><aside class="side"><div class="logo">MAKASSAR RUNNING GEAR</div><br><a href="#dashboard"><b style="color:#fff">Ringkasan</b></a><a href="#produk">Produk</a><a href="#dashboard">Pesanan</a><a href="#dashboard">Stok</a></aside><div>
+<h2>Dashboard</h2><div class="stats"><div class="box"><span class="mu">Pendapatan bulan ini</span><b>Rp 48,2 jt</b></div><div class="box"><span class="mu">Pesanan</span><b>126</b></div><div class="box"><span class="mu">Produk terjual</span><b>214</b></div><div class="box"><span class="mu">Stok menipis</span><b>3</b></div></div>
+<div class="box" style="margin-bottom:24px"><b>Penjualan 7 hari terakhir</b><div class="chart" style="margin-top:14px">${w.map((h) => `<i style="height:${h / 1.2}%"></i>`).join("")}</div></div>
+<div class="box" style="margin-bottom:24px;overflow-x:auto"><b>Pesanan terbaru</b><table><tr><th>No.</th><th>Produk</th><th>Total</th><th>Status</th></tr><tr><td>SR-1042</td><td>On Cloudtilt Moon</td><td>${rp(3720000)}</td><td><span class="tg">Dikemas</span></td></tr><tr><td>SR-1041</td><td>Nike Pro</td><td>${rp(389000)}</td><td><span class="tg">Dikirim</span></td></tr><tr><td>SR-1040</td><td>Alo Vapor</td><td>${rp(1579000)}</td><td><span class="tg">Selesai</span></td></tr></table></div>
+<div class="box" style="overflow-x:auto"><b>Stok produk</b><table><tr><th>Produk</th><th>Harga</th><th>Stok</th></tr>${P.map((p, i) => `<tr><td>${p.n}</td><td>${rp(p.p)}</td><td>${[4, 18, 2, 35, 12, 3][i]}</td></tr>`).join("")}</table></div></div></div>`;
+      }
+      function draw(keep) {
+        const h = location.hash.slice(1) || "home",
+          [r, id] = h.split("-"),
+          a = document.getElementById("app");
+        const f = document.activeElement,
+          fid = keep && f && f.type == "search";
+        a.innerHTML = (
+          {
+            home,
+            produk,
+            sepatu: produk,
+            pakaian: produk,
+            tentang,
+            keranjang,
+            checkout,
+            dashboard,
+          }[r] || (r == "detail" ? () => detail(id) : home)
+        )();
+        nav(h);
+        if (fid) {
+          const s = a.querySelector("input[type=search]");
+          s.focus();
+          s.setSelectionRange(99, 99);
+        }
+      }
+      function setF() {
+        const [r, s] = location.hash.slice(1).split("-");
+        if (r == "sepatu" || r == "pakaian" || r == "produk") {
+          cat = r == "pakaian" ? "k" : "s";
+          F = {
+            q: "",
+            g: "",
+            z: "",
+            b: (BR[r == "pakaian" ? "pakaian" : "sepatu"].find(
+              (b) => b[0] == s,
+            ) || ["", ""])[1],
+          };
+        }
+      }
+      window.addEventListener("hashchange", () => {
+        pick = "";
+        setF();
+        draw();
+        scrollTo(0, 0);
+      });
+      setF();
+      draw();
+    </script>
+  </body>
+</html>
